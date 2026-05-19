@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بيلو - ملابس تقليدية جزائرية</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🇩🇿</span>
+                <span class="logo-text">بيلو</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="#products">المنتجات</a></li>
+                <li><a href="contact.html">اتصل بنا</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="cart.html" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>ملابس تقليدية جزائرية أصيلة</h1>
+            <p>اكتشف روعة التراث الجزائري من خلال تشكيلتنا المميزة من الملابس التقليدية</p>
+            <a href="#products" class="btn btn-primary">تسوق الآن</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">تصنيفاتنا</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">👗</div>
+                    <h3>القفطان الجزائري</h3>
+                    <p>أناقة وفخامة</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👘</div>
+                    <h3>الكاراكو</h3>
+                    <p>تراث عاصمي</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🧥</div>
+                    <h3>البرنوس</h3>
+                    <p>رمز الأصالة</p>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">👔</div>
+                    <h3>الجبة القبائلية</h3>
+                    <p>جمال الجبال</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">منتجاتنا المميزة</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>توصيل لكل الولايات</h3>
+                    <p>نوصل لجميع ولايات الجزائر الـ 58</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-undo"></i>
+                    <h3>إرجاع مجاني</h3>
+                    <p>إمكانية الإرجاع خلال 7 أيام</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>جودة مضمونة</h3>
+                    <p>منتجات أصلية 100%</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>خدمة العملاء</h3>
+                    <p>متوفرون 24/7 لخدمتكم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>بيلو</h3>
+                    <p>متجرك الأول للملابس التقليدية الجزائرية الأصيلة. نقدم لكم أجود الأقمشة وأرقى التصاميم.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html">الرئيسية</a></li>
+                        <li><a href="#products">المنتجات</a></li>
+                        <li><a href="contact.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 0555 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@bilo.dz</li>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر العاصمة</li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>تابعنا</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 بيلو - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
