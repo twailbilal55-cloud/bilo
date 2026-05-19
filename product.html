@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <canvas id="bg3d"></canvas>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -36,9 +38,7 @@
     <!-- Product Detail -->
     <section class="product-detail">
         <div class="container">
-            <div class="product-detail-grid" id="productDetail">
-                <!-- Will be loaded dynamically -->
-            </div>
+            <div class="product-detail-grid" id="productDetail"></div>
         </div>
     </section>
 
@@ -51,7 +51,9 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/products.js"></script>
+    <script src="js/3d-effects.js"></script>
     <script src="js/app.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -63,14 +65,12 @@
                 document.getElementById('productDetail').innerHTML = `
                     <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
                         <h2>المنتج غير موجود</h2>
-                        <a href="index.html" class="btn btn-primary" style="margin-top: 20px;">العودة للرئيسية</a>
-                    </div>
-                `;
+                        <a href="index.html" class="btn btn-primary btn-glow" style="margin-top: 20px;">العودة للرئيسية</a>
+                    </div>`;
                 return;
             }
 
             document.title = `بيلو - ${product.name}`;
-
             document.getElementById('productDetail').innerHTML = `
                 <div class="product-detail-image">
                     ${product.image}
@@ -79,7 +79,6 @@
                     <h1>${product.name}</h1>
                     <div class="price">${product.price.toLocaleString()} <span>د.ج</span></div>
                     <p class="description">${product.details}</p>
-                    
                     <div class="size-selector">
                         <h4>المقاس:</h4>
                         <div class="size-options">
@@ -88,37 +87,29 @@
                             `).join('')}
                         </div>
                     </div>
-
                     <div class="quantity-selector">
                         <h4>الكمية:</h4>
                         <button onclick="changeDetailQty(-1)">-</button>
                         <span id="detailQty">1</span>
                         <button onclick="changeDetailQty(1)">+</button>
                     </div>
-
-                    <button class="btn btn-primary detail-add-btn" onclick="addProductToCart(${product.id})">
+                    <button class="btn btn-primary btn-glow detail-add-btn" onclick="addProductToCart(${product.id})">
                         <i class="fas fa-shopping-cart"></i> أضف إلى السلة
                     </button>
-                </div>
-            `;
+                </div>`;
         });
 
         let detailQty = 1;
-
         function changeDetailQty(change) {
             detailQty = Math.max(1, detailQty + change);
             document.getElementById('detailQty').textContent = detailQty;
         }
-
         function selectSize(el) {
             document.querySelectorAll('.size-option').forEach(s => s.classList.remove('active'));
             el.classList.add('active');
         }
-
         function addProductToCart(productId) {
-            for (let i = 0; i < detailQty; i++) {
-                addToCart(productId);
-            }
+            for (let i = 0; i < detailQty; i++) addToCart(productId);
         }
     </script>
 </body>
