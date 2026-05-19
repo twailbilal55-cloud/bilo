@@ -1245,6 +1245,41 @@ img { max-width: 100%; height: auto; }
     transform: translateX(-50%) translateY(0);
 }
 
+/* ===== Navbar Scrolled State (GSAP) ===== */
+.navbar--scrolled {
+    padding: 10px 0;
+    background: rgba(10, 10, 26, 0.95);
+    border-bottom-color: rgba(212, 175, 55, 0.2);
+}
+
+/* ===== Vanilla Tilt Glare Fix ===== */
+.js-tilt-glare {
+    border-radius: var(--radius);
+}
+
+.product-card, .category-card, .feature-card {
+    transform-style: preserve-3d;
+}
+
+.product-card .product-info,
+.category-card h3,
+.category-card p,
+.feature-card h3,
+.feature-card p {
+    transform: translateZ(30px);
+}
+
+.product-image,
+.category-icon,
+.feature-icon-wrapper {
+    transform: translateZ(50px);
+}
+
+/* ===== GSAP Scroll Pin Styles ===== */
+.pin-spacer {
+    background: transparent !important;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
     body { cursor: auto; }
