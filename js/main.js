@@ -1,6 +1,6 @@
 /* ============================================
    TARBOUCH COOK - Main JavaScript
-   3D Effects, Carousel, Animations
+   3D Effects, Logo Interaction, Animations
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
 
-    // Scroll effect
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar?.classList.add('scrolled');
@@ -26,13 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile toggle
     navToggle?.addEventListener('click', () => {
         navToggle.classList.toggle('active');
         navLinks?.classList.toggle('open');
     });
 
-    // Close mobile nav on link click
     navLinks?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navToggle?.classList.remove('active');
@@ -40,62 +37,174 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== 3D CAROUSEL ==========
-    const carousel = document.getElementById('heroCarousel');
-    if (carousel) {
-        const items = carousel.querySelectorAll('.carousel-item');
-        const prevBtn = carousel.querySelector('.prev');
-        const nextBtn = carousel.querySelector('.next');
-        let activeIndex = 0;
-        let isAnimating = false;
-        const totalItems = items.length;
+    // ========== 3D LOGO INTERACTION ==========
+    const heroLogo3D = document.getElementById('heroLogo3D');
+    const logo3DInner = document.getElementById('logo3DInner');
+    const hero = document.getElementById('hero');
 
-        function updateCarousel() {
-            items.forEach((item, i) => {
-                item.removeAttribute('data-role');
-                
-                if (i === activeIndex) {
-                    item.setAttribute('data-role', 'center');
-                } else if (i === (activeIndex + totalItems - 1) % totalItems) {
-                    item.setAttribute('data-role', 'left');
-                } else if (i === (activeIndex + 1) % totalItems) {
-                    item.setAttribute('data-role', 'right');
-                } else {
-                    item.setAttribute('data-role', 'back');
-                }
-            });
-        }
+    if (heroLogo3D && logo3DInner) {
+        let isHovering = false;
+        let currentRotateX = 0;
+        let currentRotateY = 0;
+        let targetRotateX = 0;
+        let targetRotateY = 0;
+        let scrollRotation = 0;
 
-        function navigate(direction) {
-            if (isAnimating) return;
-            isAnimating = true;
-
-            if (direction === 'next') {
-                activeIndex = (activeIndex + 1) % totalItems;
-            } else {
-                activeIndex = (activeIndex + totalItems - 1) % totalItems;
-            }
-
-            updateCarousel();
-            setTimeout(() => { isAnimating = false; }, 650);
-        }
-
-        prevBtn?.addEventListener('click', () => navigate('prev'));
-        nextBtn?.addEventListener('click', () => navigate('next'));
-
-        // Auto-rotate
-        let autoRotate = setInterval(() => navigate('next'), 4000);
-        
-        carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
-        carousel.addEventListener('mouseleave', () => {
-            autoRotate = setInterval(() => navigate('next'), 4000);
+        // Mouse move - 3D tilt effect
+        hero?.addEventListener('mousemove', (e) => {
+            isHovering = true;
+            const rect = hero.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width;
+            const y = (e.clientY - rect.top) / rect.height;
+            
+            targetRotateX = (y - 0.5) * -30; // -15 to +15 deg
+            targetRotateY = (x - 0.5) * 30;  // -15 to +15 deg
         });
 
-        // Initialize
-        updateCarousel();
+        // Mouse leave - spin back animation
+        hero?.addEventListener('mouseleave', () => {
+            isHovering = false;
+            targetRotateX = 0;
+            targetRotateY = 0;
+            
+            // Do a full 360 spin when leaving
+            logo3DInner.style.transition = 'transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            logo3DInner.style.transform = `
+                perspective(1200px) 
+                rotateY(360deg) 
+                rotateX(0deg) 
+                translateY(0px) 
+                scale(1)
+            `;
+            
+            setTimeout(() => {
+                logo3DInner.style.transition = 'transform 0.08s ease-out';
+                logo3DInner.style.transform = `
+                    perspective(1200px) 
+                    rotateY(0deg) 
+                    rotateX(0deg) 
+                    translateY(0px) 
+                    scale(1)
+                `;
+                // Restore idle animation
+                logo3DInner.style.animation = 'logoIdleFloat 6s ease-in-out infinite';
+            }, 1300);
+        });
+
+        // Smooth animation frame for mouse tracking
+        function animateLogo() {
+            if (isHovering) {
+                currentRotateX += (targetRotateX - currentRotateX) * 0.08;
+                currentRotateY += (targetRotateY - currentRotateY) * 0.08;
+                
+                // Stop idle animation when interacting
+                logo3DInner.style.animation = 'none';
+                logo3DInner.style.transition = 'none';
+                logo3DInner.style.transform = `
+                    perspective(1200px) 
+                    rotateX(${currentRotateX}deg) 
+                    rotateY(${currentRotateY}deg) 
+                    translateY(${currentRotateX * 0.3}px) 
+                    scale(${1 + Math.abs(currentRotateX + currentRotateY) * 0.002})
+                `;
+            }
+            requestAnimationFrame(animateLogo);
+        }
+        animateLogo();
+
+        // ===== SCROLL - Logo rotates on scroll =====
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroHeight = hero?.offsetHeight || window.innerHeight;
+            
+            if (scrolled < heroHeight) {
+                const scrollProgress = scrolled / heroHeight;
+                
+                // Logo rotates as you scroll
+                const scrollRotateY = scrollProgress * 180;
+                const scrollScale = 1 - scrollProgress * 0.4;
+                const scrollOpacity = 1 - scrollProgress * 0.8;
+                const scrollTranslateY = scrollProgress * -80;
+                
+                if (!isHovering) {
+                    logo3DInner.style.animation = 'none';
+                    logo3DInner.style.transition = 'transform 0.3s ease-out';
+                    logo3DInner.style.transform = `
+                        perspective(1200px) 
+                        rotateY(${scrollRotateY}deg) 
+                        rotateX(${scrollProgress * 20}deg) 
+                        translateY(${scrollTranslateY}px) 
+                        scale(${scrollScale})
+                    `;
+                }
+                
+                heroLogo3D.style.opacity = scrollOpacity;
+            }
+        });
+
+        // ===== TOUCH SUPPORT (Mobile) =====
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let isTouching = false;
+
+        hero?.addEventListener('touchstart', (e) => {
+            isTouching = true;
+            isHovering = true;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            logo3DInner.style.animation = 'none';
+        }, { passive: true });
+
+        hero?.addEventListener('touchmove', (e) => {
+            if (!isTouching) return;
+            
+            const touchX = e.touches[0].clientX;
+            const touchY = e.touches[0].clientY;
+            const deltaX = (touchX - touchStartX) / window.innerWidth;
+            const deltaY = (touchY - touchStartY) / window.innerHeight;
+            
+            targetRotateY = deltaX * 60;
+            targetRotateX = deltaY * -40;
+        }, { passive: true });
+
+        hero?.addEventListener('touchend', () => {
+            isTouching = false;
+            isHovering = false;
+            
+            // Spin back on touch release
+            logo3DInner.style.transition = 'transform 1s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            logo3DInner.style.transform = `
+                perspective(1200px) 
+                rotateY(360deg) 
+                rotateX(0deg) 
+                scale(1)
+            `;
+            
+            setTimeout(() => {
+                logo3DInner.style.transition = 'transform 0.1s ease-out';
+                logo3DInner.style.transform = 'perspective(1200px) rotateY(0) rotateX(0) scale(1)';
+                logo3DInner.style.animation = 'logoIdleFloat 6s ease-in-out infinite';
+            }, 1100);
+        }, { passive: true });
     }
 
-    // ========== 3D TILT EFFECT ==========
+    // ========== GOLDEN PARTICLES ==========
+    const particlesContainer = document.getElementById('heroParticles');
+    if (particlesContainer) {
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 6 + 5) + 's';
+            particle.style.animationDelay = (Math.random() * 5) + 's';
+            particle.style.width = (Math.random() * 4 + 2) + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.opacity = Math.random() * 0.5 + 0.2;
+            particlesContainer.appendChild(particle);
+        }
+    }
+
+    // ========== 3D TILT EFFECT (Cards) ==========
     const tiltElements = document.querySelectorAll('[data-tilt]');
     
     tiltElements.forEach(el => {
@@ -113,6 +222,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         el.addEventListener('mouseleave', () => {
+            el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+        });
+
+        // Touch support for mobile tilt
+        el.addEventListener('touchmove', (e) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.touches[0].clientX - rect.left;
+            const y = e.touches[0].clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / centerY * -5;
+            const rotateY = (x - centerX) / centerX * 5;
+            
+            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
+        }, { passive: true });
+
+        el.addEventListener('touchend', () => {
             el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
         });
     });
@@ -145,25 +272,22 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // ========== PARALLAX ON SCROLL ==========
+    // ========== PARALLAX ==========
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         
-        // Ghost text parallax
         const ghostText = document.querySelector('.hero-ghost-text');
         if (ghostText) {
             ghostText.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.3}px))`;
         }
 
-        // Hero content parallax
         const heroContent = document.querySelector('.hero-content');
         if (heroContent && scrolled < window.innerHeight) {
-            heroContent.style.transform = `translateY(${scrolled * 0.15}px)`;
             heroContent.style.opacity = 1 - (scrolled / window.innerHeight) * 0.8;
         }
     });
 
-    // ========== SMOOTH SECTION TRANSITIONS ==========
+    // ========== SMOOTH SCROLL ==========
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
@@ -174,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== MENU TABS (if on menu page) ==========
+    // ========== MENU TABS ==========
     const menuTabs = document.querySelectorAll('.menu-tab');
     const menuCards = document.querySelectorAll('.menu-card');
     
@@ -201,24 +325,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ========== ORDER SYSTEM ==========
+    // ========== ORDER BUTTONS ==========
     const orderBtns = document.querySelectorAll('.menu-card-add, .add-to-order');
     
     orderBtns.forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Add bounce animation
             this.style.transform = 'scale(1.3) rotate(180deg)';
             setTimeout(() => {
                 this.style.transform = 'scale(1) rotate(0)';
             }, 300);
-            
-            // Show notification
             showNotification('تمت الإضافة إلى الطلب! 🛒');
         });
     });
 
-    // ========== NOTIFICATION SYSTEM ==========
+    // ========== NOTIFICATION ==========
     function showNotification(message) {
         const existing = document.querySelector('.notification');
         if (existing) existing.remove();
@@ -257,7 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    // Make it globally available
     window.showNotification = showNotification;
 
     // ========== GALLERY LIGHTBOX ==========

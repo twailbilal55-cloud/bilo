@@ -56,12 +56,24 @@
 
     <!-- Hero Section -->
     <section class="hero" id="hero">
-        <!-- Video Background -->
-        <div class="hero-video-wrap">
-            <video autoplay muted loop playsinline class="hero-video">
-                <source src="https://videos.pexels.com/video-files/3196487/3196487-uhd_2560_1440_25fps.mp4" type="video/mp4" />
-            </video>
-            <div class="hero-video-overlay"></div>
+        <!-- Dark Background with gradient -->
+        <div class="hero-bg-dark"></div>
+
+        <!-- Golden Particles -->
+        <div class="hero-particles" id="heroParticles"></div>
+
+        <!-- 3D Logo Center (Main Attraction) -->
+        <div class="hero-logo-3d" id="heroLogo3D">
+            <div class="logo-3d-container">
+                <div class="logo-3d-inner" id="logo3DInner">
+                    <img src="assets/images/logo.svg" alt="طربوش كوك" class="logo-3d-img" />
+                </div>
+                <!-- Glow ring -->
+                <div class="logo-3d-ring"></div>
+                <div class="logo-3d-ring ring-2"></div>
+            </div>
+            <!-- Floating tag -->
+            <div class="logo-3d-tagline">نكهات شرقية</div>
         </div>
 
         <!-- Ghost Text -->
@@ -87,36 +99,6 @@
                 <a href="pages/order.html" class="btn btn-secondary">
                     <span>اطلب الآن</span>
                 </a>
-            </div>
-        </div>
-
-        <!-- 3D Food Carousel -->
-        <div class="hero-carousel" id="heroCarousel">
-            <div class="carousel-track">
-                <div class="carousel-item active" data-index="0">
-                    <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&h=500&fit=crop" alt="مشاوي" />
-                    <div class="carousel-label">مشاوي مشكلة</div>
-                </div>
-                <div class="carousel-item" data-index="1">
-                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=500&fit=crop" alt="كنافة" />
-                    <div class="carousel-label">كنافة دبي</div>
-                </div>
-                <div class="carousel-item" data-index="2">
-                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=500&fit=crop" alt="شاورما" />
-                    <div class="carousel-label">شاورما طربوش</div>
-                </div>
-                <div class="carousel-item" data-index="3">
-                    <img src="https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=400&h=500&fit=crop" alt="فتوش" />
-                    <div class="carousel-label">سلطة فتوش</div>
-                </div>
-            </div>
-            <div class="carousel-nav">
-                <button class="carousel-btn prev" aria-label="السابق">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                </button>
-                <button class="carousel-btn next" aria-label="التالي">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                </button>
             </div>
         </div>
 
