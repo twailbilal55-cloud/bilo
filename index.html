@@ -1,110 +1,232 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بيلو - ملابس تقليدية جزائرية</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>طربوش كوك | نكهات شرقية</title>
+    <meta name="description" content="مطعم طربوش كوك - نكهات شرقية أصيلة في قلب بليدة، الجزائر. مشاوي، كنافة، وأطباق عربية بلمسة عصرية." />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/images/logo.svg" />
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <span class="logo-icon">🇩🇿</span>
-                <span class="logo-text">بيلو</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="#products">المنتجات</a></li>
-                <li><a href="contact.html">اتصل بنا</a></li>
-            </ul>
-            <div class="nav-actions">
-                <a href="cart.html" class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-count" id="cartCount">0</span>
-                </a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
+    <!-- Loader -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="assets/images/logo.svg" alt="طربوش كوك" class="loader-img" />
             </div>
+            <div class="loader-text">نكهات شرقية</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- Grain Overlay -->
+    <div class="grain-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/images/logo.svg" alt="طربوش كوك" />
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">الرئيسية</a></li>
+                <li><a href="pages/menu.html">القائمة</a></li>
+                <li><a href="pages/about.html">من نحن</a></li>
+                <li><a href="pages/gallery.html">المعرض</a></li>
+                <li><a href="pages/order.html">اطلب الآن</a></li>
+                <li><a href="pages/contact.html">اتصل بنا</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="القائمة">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
+    <section class="hero" id="hero">
+        <!-- Video Background -->
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline class="hero-video">
+                <source src="https://videos.pexels.com/video-files/3196487/3196487-uhd_2560_1440_25fps.mp4" type="video/mp4" />
+            </video>
+            <div class="hero-video-overlay"></div>
+        </div>
+
+        <!-- Ghost Text -->
+        <div class="hero-ghost-text" aria-hidden="true">طربوش</div>
+
+        <!-- Hero Content -->
         <div class="hero-content">
-            <h1>ملابس تقليدية جزائرية أصيلة</h1>
-            <p>اكتشف روعة التراث الجزائري من خلال تشكيلتنا المميزة من الملابس التقليدية</p>
-            <a href="#products" class="btn btn-primary">تسوق الآن</a>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="section-title">تصنيفاتنا</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">👗</div>
-                    <h3>القفطان الجزائري</h3>
-                    <p>أناقة وفخامة</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">👘</div>
-                    <h3>الكاراكو</h3>
-                    <p>تراث عاصمي</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">🧥</div>
-                    <h3>البرنوس</h3>
-                    <p>رمز الأصالة</p>
-                </div>
-                <div class="category-card">
-                    <div class="category-icon">👔</div>
-                    <h3>الجبة القبائلية</h3>
-                    <p>جمال الجبال</p>
-                </div>
+            <div class="hero-badge animate-fade-up">
+                <span class="badge-dot"></span>
+                نكهات شرقية أصيلة
+            </div>
+            <h1 class="hero-title animate-fade-up delay-1">
+                طربوش <span class="text-gradient">كوك</span>
+            </h1>
+            <p class="hero-subtitle animate-fade-up delay-2">
+                رحلة ذوق لا تُنسى... مشاوي على الجمر، كنافة ذهبية، وأطباق شرقية بلمسة عصرية في قلب بليدة
+            </p>
+            <div class="hero-buttons animate-fade-up delay-3">
+                <a href="pages/menu.html" class="btn btn-primary">
+                    <span>اكتشف القائمة</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </a>
+                <a href="pages/order.html" class="btn btn-secondary">
+                    <span>اطلب الآن</span>
+                </a>
             </div>
         </div>
-    </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <h2 class="section-title">منتجاتنا المميزة</h2>
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded dynamically -->
+        <!-- 3D Food Carousel -->
+        <div class="hero-carousel" id="heroCarousel">
+            <div class="carousel-track">
+                <div class="carousel-item active" data-index="0">
+                    <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&h=500&fit=crop" alt="مشاوي" />
+                    <div class="carousel-label">مشاوي مشكلة</div>
+                </div>
+                <div class="carousel-item" data-index="1">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=500&fit=crop" alt="كنافة" />
+                    <div class="carousel-label">كنافة دبي</div>
+                </div>
+                <div class="carousel-item" data-index="2">
+                    <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=500&fit=crop" alt="شاورما" />
+                    <div class="carousel-label">شاورما طربوش</div>
+                </div>
+                <div class="carousel-item" data-index="3">
+                    <img src="https://images.unsplash.com/photo-1547573854-74d2a71d0826?w=400&h=500&fit=crop" alt="فتوش" />
+                    <div class="carousel-label">سلطة فتوش</div>
+                </div>
             </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn prev" aria-label="السابق">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <button class="carousel-btn next" aria-label="التالي">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>اكتشف المزيد</span>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="features">
         <div class="container">
+            <div class="section-header">
+                <span class="section-tag">لماذا طربوش؟</span>
+                <h2 class="section-title">تجربة فريدة في كل <span class="text-gradient">لقمة</span></h2>
+            </div>
             <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-truck"></i>
-                    <h3>توصيل لكل الولايات</h3>
-                    <p>نوصل لجميع ولايات الجزائر الـ 58</p>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>مشاوي على الجمر</h3>
+                    <p>لحوم طازجة مشوية على الفحم بتتبيلة سرية تذوب في الفم</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-undo"></i>
-                    <h3>إرجاع مجاني</h3>
-                    <p>إمكانية الإرجاع خلال 7 أيام</p>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
+                    </div>
+                    <h3>حلويات شرقية</h3>
+                    <p>كنافة، بقلاوة، تيراميسو وحلويات مصنوعة بحب وإتقان</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>جودة مضمونة</h3>
-                    <p>منتجات أصلية 100%</p>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <h3>توصيل سريع</h3>
+                    <p>نوصل لباب بيتك في بليدة وضواحيها حتى منتصف الليل</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>خدمة العملاء</h3>
-                    <p>متوفرون 24/7 لخدمتكم</p>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3>قاعة عائلية</h3>
+                    <p>أجواء عائلية دافئة بتصميم شرقي أنيق يرحب بالجميع</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Dishes Section -->
+    <section class="popular-dishes">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">الأكثر طلباً</span>
+                <h2 class="section-title">أطباقنا <span class="text-gradient">المميزة</span></h2>
+            </div>
+            <div class="dishes-grid">
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1529006557810-274b9b2fc783?w=400&h=300&fit=crop" alt="Arabian Jumbo" />
+                        <div class="dish-badge">الأكثر مبيعاً</div>
+                    </div>
+                    <div class="dish-info">
+                        <h3>Arabian Jumbo</h3>
+                        <p>وجبة عربية كاملة مع أرز ولحم مشوي</p>
+                        <div class="dish-price">1,400 د.ج</div>
+                    </div>
+                </div>
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop" alt="كنافة دبي" />
+                        <div class="dish-badge">جديد</div>
+                    </div>
+                    <div class="dish-info">
+                        <h3>كنافة دبي</h3>
+                        <p>كنافة بالفستق الحلبي والقشطة</p>
+                        <div class="dish-price">600 د.ج</div>
+                    </div>
+                </div>
+                <div class="dish-card" data-tilt>
+                    <div class="dish-image">
+                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=300&fit=crop" alt="Family Meal" />
+                    </div>
+                    <div class="dish-info">
+                        <h3>Family Meal</h3>
+                        <p>وجبة عائلية لـ 4 أشخاص مع مشاوي مشكلة</p>
+                        <div class="dish-price">3,200 د.ج</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dishes-cta">
+                <a href="pages/menu.html" class="btn btn-primary">شاهد القائمة كاملة</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-bg-pattern"></div>
+        <div class="container">
+            <div class="cta-content">
+                <h2>جاهز تطلب؟</h2>
+                <p>اتصل بنا أو اطلب مباشرة عبر الموقع</p>
+                <div class="cta-buttons">
+                    <a href="pages/order.html" class="btn btn-primary btn-lg">اطلب الآن</a>
+                    <a href="tel:+213563753977" class="btn btn-outline btn-lg">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        <span>0563 75 39 77</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -114,42 +236,62 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>بيلو</h3>
-                    <p>متجرك الأول للملابس التقليدية الجزائرية الأصيلة. نقدم لكم أجود الأقمشة وأرقى التصاميم.</p>
+                <div class="footer-brand">
+                    <img src="assets/images/logo.svg" alt="طربوش كوك" class="footer-logo" />
+                    <p>نكهات شرقية أصيلة في قلب بليدة. مشاوي، حلويات، وأجواء عائلية لا تُنسى.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/tarbouch.cook" target="_blank" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.tiktok.com/@tarbouch.cook" target="_blank" aria-label="TikTok">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.88-2.88 2.89 2.89 0 0 1 2.88-2.88c.28 0 .55.04.81.1v-3.5a6.37 6.37 0 0 0-.81-.05A6.34 6.34 0 0 0 3.15 15a6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.34-6.34V8.1a8.16 8.16 0 0 0 4.76 1.52v-3.4a4.85 4.85 0 0 1-1-.47z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/tarbouchcook" target="_blank" aria-label="Facebook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h3>روابط سريعة</h3>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
                     <ul>
                         <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="#products">المنتجات</a></li>
-                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="pages/menu.html">القائمة</a></li>
+                        <li><a href="pages/about.html">من نحن</a></li>
+                        <li><a href="pages/gallery.html">المعرض</a></li>
+                        <li><a href="pages/order.html">اطلب الآن</a></li>
+                        <li><a href="pages/contact.html">اتصل بنا</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
-                    <h3>تواصل معنا</h3>
+                <div class="footer-contact">
+                    <h4>تواصل معنا</h4>
                     <ul>
-                        <li><i class="fas fa-phone"></i> 0555 123 456</li>
-                        <li><i class="fas fa-envelope"></i> info@bilo.dz</li>
-                        <li><i class="fas fa-map-marker-alt"></i> الجزائر العاصمة</li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>Boulevard des 20 mètres, بليدة</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.87.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.94.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span>0563 75 39 77</span>
+                        </li>
+                        <li>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <span>السبت - الخميس: 12:00 - 23:00</span>
+                        </li>
                     </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>تابعنا</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 بيلو - جميع الحقوق محفوظة</p>
+                <p>&copy; 2024 طربوش كوك. جميع الحقوق محفوظة.</p>
             </div>
         </div>
     </footer>
 
-    <script src="js/products.js"></script>
-    <script src="js/app.js"></script>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/213563753977" target="_blank" class="whatsapp-float" aria-label="تواصل عبر واتساب">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
 </body>
 </html>
