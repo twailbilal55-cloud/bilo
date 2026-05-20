@@ -1,0 +1,6 @@
+/* Animations */
+@keyframes loading { to { width:100%; } }
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+@keyframes floatWa { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+@keyframes scrollD { to { top:100%; } }
+@keyframes pFloat { 0%{opacity:0;transform:translateY(100vh) scale(0)} 10%{opacity:.6} 90%{opacity:.15} 100%{opacity:0;transform:translateY(-10vh) scale(1)} }
