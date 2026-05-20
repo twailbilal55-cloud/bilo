@@ -38,79 +38,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // === STICKY 3D LOGO ===
+    // Behavior: starts LEFT side, scrolls to RIGHT side (one move only), then STOPS there
     const stickyLogo = document.getElementById('stickyLogo');
     const stickyInner = document.getElementById('stickyLogoInner');
-    const sections = document.querySelectorAll('.section');
 
     if (stickyLogo && stickyInner) {
         const isMobile = () => window.innerWidth < 768;
 
-        // Each section: where logo RESTS (small). Between sections it grows big.
-        function getPositions() {
-            if (isMobile()) return [
-                { top: 18, left: 50, size: 65 },
-                { top: 12, left: 20, size: 45 },
-                { top: 12, left: 80, size: 45 },
-                { top: 12, left: 20, size: 45 },
-                { top: 12, left: 80, size: 45 },
-                { top: 12, left: 20, size: 45 },
-                { top: 12, left: 80, size: 45 },
-            ];
-            return [
-                { top: 45, left: 75, size: 140 },  // hero: big right
-                { top: 50, left: 6, size: 80 },    // features: small left
-                { top: 50, left: 94, size: 80 },   // menu: small right
-                { top: 50, left: 6, size: 80 },    // about: small left
-                { top: 50, left: 94, size: 80 },   // gallery: small right
-                { top: 50, left: 6, size: 80 },    // order: small left
-                { top: 50, left: 94, size: 80 },   // contact: small right
-            ];
+        // Only ONE transition: left → right, during first scroll (hero → features)
+        // After that, logo stays fixed on the right
+        let cTop, cLeft, cSize, cRotateY = 0, cRotateX = 0;
+
+        // Starting position (LEFT side)
+        function getStart() {
+            return isMobile()
+                ? { top: 20, left: 25, size: 80 }
+                : { top: 40, left: 18, size: 180 };
+        }
+        // End position (RIGHT side) - stays here forever after
+        function getEnd() {
+            return isMobile()
+                ? { top: 15, left: 82, size: 55 }
+                : { top: 50, left: 90, size: 110 };
         }
 
-        let cTop = 45, cLeft = 75, cSize = 140, cRotateY = 0, cRotateX = 0;
+        const start = getStart();
+        cTop = start.top;
+        cLeft = start.left;
+        cSize = start.size;
 
         function updateLogo() {
             const scrollY = window.pageYOffset;
-            const docH = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = Math.max(0, Math.min(1, scrollY / Math.max(docH, 1)));
-            const positions = getPositions();
-            const n = positions.length;
-            const raw = progress * (n - 1);
-            const idx = Math.min(Math.floor(raw), n - 2);
-            const t = raw - idx; // 0 to 1 between two sections
+            const heroH = window.innerHeight; // first section height
+            // progress: 0 at top, 1 when hero is fully scrolled past
+            const progress = Math.max(0, Math.min(1, scrollY / heroH));
 
-            const from = positions[idx];
-            const to = positions[idx + 1];
+            const s = getStart();
+            const e = getEnd();
 
-            // Interpolate position
-            const targetTop = from.top + (to.top - from.top) * t;
-            const targetLeft = from.left + (to.left - from.left) * t;
+            // Interpolate from start to end
+            const t = progress;
+            const targetTop = s.top + (e.top - s.top) * t;
+            const targetLeft = s.left + (e.left - s.left) * t;
 
-            // Size: GROW big in middle (sin curve peaks at t=0.5)
-            const restSize = from.size + (to.size - from.size) * t;
-            const growFactor = 1 + Math.sin(t * Math.PI) * 0.6; // up to 60% bigger mid-travel
-            const targetSize = restSize * growFactor;
+            // Size: grows BIG in middle, shrinks at end
+            const baseSize = s.size + (e.size - s.size) * t;
+            const growBump = Math.sin(t * Math.PI) * 0.5; // 50% bigger mid-travel
+            const targetSize = baseSize * (1 + growBump);
 
-            // 3D flip: full 360 rotation per section transition (looks 3D)
-            // But face stays forward = use rotateY that goes 0→360 smoothly
-            const targetRotateY = t * 360; // full spin during each transition
-            const targetRotateX = Math.sin(t * Math.PI) * 15; // nod during movement
+            // 3D flip: one full 360° rotation during the move
+            const targetRotateY = t * 360;
+            const targetRotateX = Math.sin(t * Math.PI) * 20;
 
             // Smooth lerp
-            cTop += (targetTop - cTop) * 0.07;
-            cLeft += (targetLeft - cLeft) * 0.07;
-            cSize += (targetSize - cSize) * 0.09;
-            cRotateY += (targetRotateY - cRotateY) * 0.06;
-            cRotateX += (targetRotateX - cRotateX) * 0.08;
+            cTop += (targetTop - cTop) * 0.06;
+            cLeft += (targetLeft - cLeft) * 0.06;
+            cSize += (targetSize - cSize) * 0.08;
+            cRotateY += (targetRotateY - cRotateY) * 0.05;
+            cRotateX += (targetRotateX - cRotateX) * 0.07;
 
-            // Apply
+            // Apply position
             stickyLogo.style.top = cTop + '%';
             stickyLogo.style.left = cLeft + '%';
             stickyLogo.style.width = cSize + 'px';
             stickyLogo.style.height = cSize + 'px';
             stickyLogo.style.transform = 'translate(-50%, -50%)';
 
-            // 3D rotation - full spin makes it look 3D
+            // 3D rotation
             stickyInner.style.transform = `rotateY(${cRotateY}deg) rotateX(${cRotateX}deg)`;
 
             requestAnimationFrame(updateLogo);
@@ -124,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
         stickyLogo.addEventListener('pointerdown', () => {
             taps++;
             stickyInner.style.transition = 'transform .7s cubic-bezier(0.34,1.56,0.64,1)';
-            stickyInner.style.transform = `rotateY(${taps * 360}deg) rotateX(15deg) scale(1.4)`;
+            stickyInner.style.transform = `rotateY(${taps * 360}deg) rotateX(15deg) scale(1.3)`;
             setTimeout(() => { stickyInner.style.transition = 'none'; }, 800);
         });
     }
