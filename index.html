@@ -3,153 +3,311 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بيلو - ملابس تقليدية جزائرية</title>
+    <title>CITTA. — The world is yours, but the city's mine ⚡</title>
+    <meta name="description" content="Citta. Brand — Urban × Nautical streetwear. هودي، تيشرتات، كاب، إكسسوارات. The world is yours! But the city's mine.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Loader -->
+    <div class="loader">
+        <div class="loader-logo"><span>Citta</span></div>
+        <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+        <div class="loader-text">Loading the city · ⚓</div>
+    </div>
+
+    <!-- 3D Canvas Layer -->
+    <canvas id="three-canvas"></canvas>
+    <div class="noise-overlay"></div>
+    <div class="scanlines"></div>
+
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <span class="logo-icon">🇩🇿</span>
-                <span class="logo-text">بيلو</span>
+                <span class="logo-mark">⚓</span>
+                <span class="logo-text">Citta</span>
             </a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">الرئيسية</a></li>
-                <li><a href="#products">المنتجات</a></li>
-                <li><a href="contact.html">اتصل بنا</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#story">Story</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <a href="cart.html" class="cart-icon">
-                    <i class="fas fa-shopping-cart"></i>
+                <a href="cart.html" class="cart-icon" aria-label="Cart">
+                    <i class="fas fa-shopping-bag"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </a>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>ملابس تقليدية جزائرية أصيلة</h1>
-            <p>اكتشف روعة التراث الجزائري من خلال تشكيلتنا المميزة من الملابس التقليدية</p>
-            <a href="#products" class="btn btn-primary">تسوق الآن</a>
+            <div class="hero-tag">
+                <span class="dot"></span>
+                <span>FW26 · CAPSULE DROP</span>
+            </div>
+            <h1>
+                <span class="line"><span class="word">THE WORLD</span></span>
+                <span class="line"><span class="word">IS YOURS</span></span>
+                <span class="line"><span class="word accent">BUT THE CITY'S</span></span>
+                <span class="line"><span class="word accent">MINE ⚡</span></span>
+            </h1>
+            <p class="hero-subtitle">
+                مجموعة <strong style="color:#fff">CITTA.</strong> الجديدة — حيث تلتقي الشوارع الحضرية بروح الساحل المتوسطي.
+                ستريت وير سينمائي مصمم للجيل الذي يعيش بسرعة المدينة.
+            </p>
+            <div class="hero-cta">
+                <a href="#products" class="btn btn-primary">
+                    <span>تسوق المجموعة</span>
+                    <i class="fas fa-arrow-left arrow"></i>
+                </a>
+                <a href="#story" class="btn btn-ghost">
+                    <span>قصة البراند</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>SCROLL</span>
+            <div class="line-anim"></div>
         </div>
     </section>
 
-    <!-- Categories Section -->
-    <section class="categories">
+    <!-- MARQUEE STRIP -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>CITTA. BRAND</span><span>URBAN STREETWEAR</span><span>MEDITERRANEAN SOUL</span>
+            <span>THE CITY'S MINE</span><span>FW26 DROP</span>
+            <span>CITTA. BRAND</span><span>URBAN STREETWEAR</span><span>MEDITERRANEAN SOUL</span>
+            <span>THE CITY'S MINE</span><span>FW26 DROP</span>
+        </div>
+    </div>
+
+    <!-- MANIFESTO -->
+    <section class="manifesto">
+        <div class="manifesto-wrap">
+            <h2>
+                <span class="word">WE</span>
+                <span class="word">DON'T</span>
+                <span class="word">FOLLOW</span>
+                <span class="word">THE</span>
+                <span class="word">CITY.</span>
+                <br>
+                <span class="word">WE</span>
+                <span class="word accent">OWN</span>
+                <span class="word accent">IT.</span>
+                <span class="word">EVERY</span>
+                <span class="word">STREET,</span>
+                <span class="word">EVERY</span>
+                <span class="word">SHORE.</span>
+            </h2>
+        </div>
+    </section>
+
+    <!-- COLLECTIONS -->
+    <section class="collections" id="collections">
         <div class="container">
-            <h2 class="section-title">تصنيفاتنا</h2>
-            <div class="categories-grid">
-                <div class="category-card">
-                    <div class="category-icon">👗</div>
-                    <h3>القفطان الجزائري</h3>
-                    <p>أناقة وفخامة</p>
+            <div class="section-header" data-reveal>
+                <div class="section-tag">⚓ COLLECTIONS</div>
+                <h2 class="section-title">Shop By Category</h2>
+                <p class="section-subtitle">من الستريت إلى الساحل — قطع مصممة للحركة، الستايل، والحضور.</p>
+            </div>
+            <div class="collections-grid" data-stagger>
+                <div class="collection-card" data-stagger-item>
+                    <span class="num">01</span>
+                    <div class="icon">🧥</div>
+                    <div class="info">
+                        <h3>Hoodies</h3>
+                        <p>Heavy · Premium</p>
+                    </div>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">👘</div>
-                    <h3>الكاراكو</h3>
-                    <p>تراث عاصمي</p>
+                <div class="collection-card" data-stagger-item>
+                    <span class="num">02</span>
+                    <div class="icon">👕</div>
+                    <div class="info">
+                        <h3>T-Shirts</h3>
+                        <p>Graphic · Drops</p>
+                    </div>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">🧥</div>
-                    <h3>البرنوس</h3>
-                    <p>رمز الأصالة</p>
+                <div class="collection-card" data-stagger-item>
+                    <span class="num">03</span>
+                    <div class="icon">🧢</div>
+                    <div class="info">
+                        <h3>Headwear</h3>
+                        <p>Caps · Beanies</p>
+                    </div>
                 </div>
-                <div class="category-card">
-                    <div class="category-icon">👔</div>
-                    <h3>الجبة القبائلية</h3>
-                    <p>جمال الجبال</p>
+                <div class="collection-card" data-stagger-item>
+                    <span class="num">04</span>
+                    <div class="icon">⚓</div>
+                    <div class="info">
+                        <h3>Accessories</h3>
+                        <p>Chains · Pins</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
+    <!-- PRODUCTS -->
     <section class="products" id="products">
         <div class="container">
-            <h2 class="section-title">منتجاتنا المميزة</h2>
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded dynamically -->
+            <div class="section-header" data-reveal>
+                <div class="section-tag">⚡ FEATURED · FW26</div>
+                <h2 class="section-title">The Drop</h2>
+                <p class="section-subtitle">قطع مختارة من المجموعة الجديدة — إصدار محدود.</p>
+            </div>
+            <div class="products-grid" id="productsGrid" data-stagger>
+                <!-- products injected via JS -->
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- STORY -->
+    <section class="story" id="story">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-text" data-reveal>
+                    <div class="section-tag">⚓ THE STORY</div>
+                    <h2>Born by the <span class="accent">sea.</span><br>Raised in the <span class="accent">streets.</span></h2>
+                    <p>
+                        <strong style="color:#fff">CITTA.</strong> ولدت من تقاطع غير متوقع: أمواج البحر المتوسط الهادئة وضجيج المدينة الحضرية.
+                        كل قطعة تحمل في تفاصيلها رمز المرسى — للذين يرسون في المدينة، لكن قلوبهم على الساحل.
+                    </p>
+                    <p>
+                        نحن لا نصنع ملابس فقط. نصنع شعار للجيل الذي يعيش على إيقاع المدينة، يلبس ستايله بثقة، ولا يتنازل عن جودته.
+                        من جيجيل إلى الجزائر العاصمة، من المدينة إلى البحر — <em style="color:#00CED1">CITTA. is yours.</em>
+                    </p>
+                    <div class="story-stats">
+                        <div class="stat">
+                            <div class="stat-num" data-count="143" data-suffix="K">
+                                <span class="num-val">0</span><span class="accent">+</span>
+                            </div>
+                            <div class="stat-label">Total Likes</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-num" data-count="58" data-suffix="">
+                                <span class="num-val">0</span><span class="accent">/58</span>
+                            </div>
+                            <div class="stat-label">Wilayas Shipping</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-num" data-count="100" data-suffix="%">
+                                <span class="num-val">0</span><span class="accent">.</span>
+                            </div>
+                            <div class="stat-label">Authentic</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="story-visual" data-reveal>
+                    <canvas id="story-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
     <section class="features">
         <div class="container">
             <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-truck"></i>
-                    <h3>توصيل لكل الولايات</h3>
-                    <p>نوصل لجميع ولايات الجزائر الـ 58</p>
+                <div class="feature">
+                    <i class="fas fa-truck-fast"></i>
+                    <h3>Fast Shipping</h3>
+                    <p>توصيل لكل ولايات الجزائر</p>
                 </div>
-                <div class="feature-card">
-                    <i class="fas fa-undo"></i>
-                    <h3>إرجاع مجاني</h3>
-                    <p>إمكانية الإرجاع خلال 7 أيام</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-shield-alt"></i>
-                    <h3>جودة مضمونة</h3>
+                <div class="feature">
+                    <i class="fas fa-shield-halved"></i>
+                    <h3>Original</h3>
                     <p>منتجات أصلية 100%</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature">
+                    <i class="fas fa-rotate-left"></i>
+                    <h3>Easy Returns</h3>
+                    <p>إرجاع خلال 7 أيام</p>
+                </div>
+                <div class="feature">
                     <i class="fas fa-headset"></i>
-                    <h3>خدمة العملاء</h3>
-                    <p>متوفرون 24/7 لخدمتكم</p>
+                    <h3>Support 24/7</h3>
+                    <p>خدمة عملاء متواصلة</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <h3>بيلو</h3>
-                    <p>متجرك الأول للملابس التقليدية الجزائرية الأصيلة. نقدم لكم أجود الأقمشة وأرقى التصاميم.</p>
+                    <a href="index.html" class="logo" style="margin-bottom: 20px; display: inline-flex;">
+                        <span class="logo-mark">⚓</span>
+                        <span class="logo-text">Citta</span>
+                    </a>
+                    <p>The world is yours, but the city's mine ⚡<br>Urban × Nautical streetwear designed for the generation that owns the streets.</p>
                 </div>
                 <div class="footer-col">
-                    <h3>روابط سريعة</h3>
+                    <h3>Shop</h3>
                     <ul>
-                        <li><a href="index.html">الرئيسية</a></li>
-                        <li><a href="#products">المنتجات</a></li>
-                        <li><a href="contact.html">اتصل بنا</a></li>
+                        <li><a href="#products">All Products</a></li>
+                        <li><a href="#collections">Hoodies</a></li>
+                        <li><a href="#collections">T-Shirts</a></li>
+                        <li><a href="#collections">Accessories</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>تواصل معنا</h3>
+                    <h3>Brand</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i> 0555 123 456</li>
-                        <li><i class="fas fa-envelope"></i> info@bilo.dz</li>
-                        <li><i class="fas fa-map-marker-alt"></i> الجزائر العاصمة</li>
+                        <li><a href="#story">Our Story</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="#">Size Guide</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h3>تابعنا</h3>
+                    <h3>Follow</h3>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.tiktok.com/" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 بيلو - جميع الحقوق محفوظة</p>
+                <p>&copy; 2026 CITTA. BRAND — All rights reserved.</p>
+                <div class="anchor-line"><i class="fas fa-anchor"></i> Made in DZ</div>
             </div>
         </div>
     </footer>
 
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 3D + Animation libs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.0.42/dist/lenis.min.js"></script>
+
+    <!-- App scripts -->
     <script src="js/products.js"></script>
+    <script src="js/three-scene.js"></script>
+    <script src="js/scroll-animations.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
